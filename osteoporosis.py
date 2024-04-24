@@ -46,7 +46,6 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.70,random_state=
 lm=LinearRegression()
 model = lm.fit(x_train,y_train)
 
-
 # Veri kümesinin boyutlarını göster
 total_records = len(df)
 st.write(f'Total Record : {total_records}')
@@ -58,7 +57,7 @@ test_records = len(x_test)
 # Tahmin işlemi ve yeni kayıtları eklemek
 if st.sidebar.button('Send'):
     
-    if all([age == 0,calcium==0,phospor==0,alkaline==0,vitamin_d==0,parathormon==0,tsh==0,estrogen==0,testosterone==0]):
+    if all([age == 0,alkaline==0,vitamin_d==0,parathormon==0,estrogen==0,testosterone==0]):
         st.warning("At least 1 value must be entered")
     else:
         user_input = np.array([[age,gender,menopause,osteoporosis,
