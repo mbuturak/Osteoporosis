@@ -42,24 +42,9 @@ estrogen = st.sidebar.number_input('Estrogen', value=0)
 testosterone = st.sidebar.number_input('Testosterone', value=0)
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.70,random_state=1)
+
 lm=LinearRegression()
 model = lm.fit(x_train,y_train)
-model.score(x_test,y_test)
-
-# Tahmin işlemi ve yeni kayıtları eklemek
-if st.sidebar.button('Hesapla'):
-    
-    if all([age == 0,calcium==0,phospor==0,alkaline==0,vitamin_d==0,parathormon==0,tsh==0,estrogen==0,testosterone==0]):
-        st.warning("At least 1 value must be entered")
-    else:
-        user_input = np.array([[age,gender,menopause,osteoporosis,
-                                hip_fracture,fracture_history,supplement,
-                                calcium,phospor,alkaline,vitamin_d,parathormon,tsh,estrogen]])
-
-        prediction = model.predict(user_input)
-
-        st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
-
 
 
 # Veri kümesinin boyutlarını göster
@@ -70,9 +55,25 @@ st.write(f'Total Record : {total_records}')
 train_records = len(x_train)
 test_records = len(x_test)
 
+# Tahmin işlemi ve yeni kayıtları eklemek
+if st.sidebar.button('Send'):
+    
+    if all([age == 0,calcium==0,phospor==0,alkaline==0,vitamin_d==0,parathormon==0,tsh==0,estrogen==0,testosterone==0]):
+        st.warning("At least 1 value must be entered")
+    else:
+        user_input = np.array([[age,gender,menopause,osteoporosis,
+                                hip_fracture,fracture_history,supplement,
+                                calcium,phospor,alkaline,vitamin_d,parathormon,tsh,estrogen]])
+
+        prediction = model.predict(user_input)
+
+        st.write(prediction)
+
+        # st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
+
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
-cv_scores = cross_val_score(model, x, y, cv=5)  # 5 katlı çapraz doğrulama
+cv_scores = cross_val_score(model, x, y, cv=2)  # 5 katlı çapraz doğrulama
 
 # Düğmelere tıklanınca çapraz doğrulama skorlarını, kullanılan kayıt sayılarını ve model doğruluk oranını göster/gizle
 show_scores = st.checkbox('Show/Hide Scores')
@@ -100,22 +101,3 @@ if show_tree_plot:
 
     # Görselin çıktısını ayarla
     st.pyplot(bbox_inches='tight')
-
-
-def predict_diabetes(pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree, age):
-    try:
-        # Modeli eğitiyorsanız bu kısmı bu fonksiyona taşıyabilirsiniz
-        model = DecisionTreeClassifier(max_depth=5, min_samples_split=5, min_samples_leaf=2)
-        model.fit(x_train, y_train)  # x_train ve y_train verileri kullanılarak eğitim yapılıyor
-
-        user_input = np.array([[pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree, age]])
-        prediction = model.predict(user_input)
-
-        if prediction[0] == 0:
-            result = "Diyabet değil"
-        else:
-            result = "Diyabet"
-
-        return result
-    except Exception as e:
-        return str(e)
