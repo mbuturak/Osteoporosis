@@ -28,12 +28,12 @@ st.sidebar.title('Osteoporosis Risk Analysis')
 age = st.sidebar.number_input('Age', value=0)
 gender = st.sidebar.selectbox("Gender",("Male", "Female"))
 menopause = st.sidebar.selectbox("Menopause",("True", "False"))
-osteoporosis = st.sidebar.selectbox("Is there a family history of osteoporosis",("True", "False"))
-hip_fracture = st.sidebar.selectbox("Hip fracture in the family",("True", "False"))
+osteoporosis_family = st.sidebar.selectbox("Is there a family history of osteoporosis",("True", "False"))
+hip_fracture_family = st.sidebar.selectbox("Hip fracture in the family",("True", "False"))
 fracture_history = st.sidebar.selectbox("Fracture history",("True", "False"))
 supplement = st.sidebar.selectbox("Supplement",("True", "False"))
 calcium = st.sidebar.number_input('Calcium', value=0.0)
-phospor = st.sidebar.number_input('Phospor', value=0.0)
+phosphor = st.sidebar.number_input('Phosphor', value=0.0)
 alkaline = st.sidebar.number_input('Alkaline Phosphatase', value=0)
 vitamin_d = st.sidebar.number_input('Vitamin D', value=0)
 parathormon = st.sidebar.number_input('Parathormon', value=0)
@@ -60,9 +60,17 @@ if st.sidebar.button('Send'):
     if all([age == 0,alkaline==0,vitamin_d==0,parathormon==0,estrogen==0,testosterone==0]):
         st.warning("At least 1 value must be entered")
     else:
-        user_input = np.array([[age,gender,menopause,osteoporosis,
-                                hip_fracture,fracture_history,supplement,
-                                calcium,phospor,alkaline,vitamin_d,parathormon,tsh,estrogen]])
+
+        gender_encoded = 1 if gender == "Male" else 0
+        menopause_encoded = 1 if menopause == "True" else 0
+        osteoporosis_family_encoded = 1 if osteoporosis_family == "True" else 0
+        hip_fracture_family_encoded = 1 if hip_fracture_family == "True" else 0
+        fracture_history_encoded = 1 if fracture_history == "True" else 0
+        supplement_encoded = 1 if supplement == "True" else 0
+
+        user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
+                                hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
+                                calcium, phosphor, vitamin_d, tsh, estrogen, testosterone]])
 
         prediction = model.predict(user_input)
 
