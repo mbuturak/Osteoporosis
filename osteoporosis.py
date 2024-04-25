@@ -98,7 +98,7 @@ if show_scores:
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
     st.write(f'Average Accuracy Rate: **{np.mean(cv_scores):.2f}**')
 
-if show_graph:
+if show_graph and results is not None:
     fig, ax = plt.subplots()
     ax.scatter(results['Actual'], results['Predicted'])
     ax.plot([results['Actual'].min(), results['Actual'].max()], [results['Actual'].min(), results['Actual'].max()], 'k--', lw=4)
