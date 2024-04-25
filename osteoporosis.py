@@ -90,4 +90,4 @@ if show_scores:
     # Kullanılan kayıt sayıları
     st.write(f'Number of Training Records Used: {train_records}/{total_records}')
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
-    st.write(f'Average Accuracy Rate: {np.mean(cv_scores):.2f}')
+    st.write(f'Average Accuracy Rate: **{np.mean(cv_scores):.2f}**')
