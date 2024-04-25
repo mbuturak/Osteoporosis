@@ -47,6 +47,7 @@ model = lm.fit(x_train,y_train)
 # Veri kümesinin boyutlarını göster
 total_records = len(df)
 st.write(f'Total Record : {total_records}')
+st.write(df.head(3))
 
 # Eğitim ve test kümesi boyutlarını göster
 train_records = len(x_train)
@@ -70,9 +71,9 @@ if st.sidebar.button('Send'):
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
                                 calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone]])
         #st.write(user_input)
-        prediction = model.predict(user_input)
+        #prediction = model.predict(user_input)
         #st.write(model.predict([[57,9.2,3.3,85,52,25,1.2,20,50,True,False,False,True,True,True]]))
-        st.write(f'Prediction Result: <span style="font-size:20px">{prediction}</span>', unsafe_allow_html=True)
+        #st.write(f'Prediction Result: <span style="font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
