@@ -24,12 +24,6 @@ st.write("With this app you can visualize the osteoporosis risk score based on t
 # Kullanıcı girişini al
 st.sidebar.title('Osteoporosis Risk Analysis')
 age = st.sidebar.number_input('Age', value=0)
-gender = st.sidebar.selectbox("Gender",("Male", "Female"))
-menopause = st.sidebar.selectbox("Menopause",("True", "False"))
-osteoporosis_family = st.sidebar.selectbox("Is there a family history of osteoporosis",("True", "False"))
-hip_fracture_family = st.sidebar.selectbox("Hip fracture in the family",("True", "False"))
-fracture_history = st.sidebar.selectbox("Fracture history",("True", "False"))
-supplement = st.sidebar.selectbox("Supplement",("True", "False"))
 calcium = st.sidebar.number_input('Calcium', value=0.0)
 phosphor = st.sidebar.number_input('Phosphor', value=0.0)
 alkaline = st.sidebar.number_input('Alkaline Phosphatase', value=0)
@@ -38,6 +32,13 @@ parathormon = st.sidebar.number_input('Parathormon', value=0)
 tsh = st.sidebar.number_input('TSH', value=0.0)
 estrogen = st.sidebar.number_input('Estrogen', value=0)
 testosterone = st.sidebar.number_input('Testosterone', value=0)
+gender = st.sidebar.selectbox("Gender",("Male", "Female"))
+menopause = st.sidebar.selectbox("Menopause",("True", "False"))
+osteoporosis_family = st.sidebar.selectbox("Is there a family history of osteoporosis",("True", "False"))
+hip_fracture_family = st.sidebar.selectbox("Hip fracture in the family",("True", "False"))
+fracture_history = st.sidebar.selectbox("Fracture history",("True", "False"))
+supplement = st.sidebar.selectbox("Supplement",("True", "False"))
+
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.70,random_state=1)
 
