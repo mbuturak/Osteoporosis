@@ -100,7 +100,6 @@ if show_scores:
 
 if show_graph:
     if results is not None:
-        st.write("Results DataFrame:", results)
         
         fig, ax = plt.subplots()
         ax.scatter(results['Actual'], results['Predicted'])
@@ -110,5 +109,7 @@ if show_graph:
         ax.set_title('Actual vs. Predicted')
         plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
         st.pyplot(fig)  # st.pyplot(fig) yerine st.pyplot() kullanın
+
+        st.write("Success percentages of the data used for training;", results)
     else:
         st.warning("The prediction has not yet been realized")
