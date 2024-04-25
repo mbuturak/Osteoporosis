@@ -58,13 +58,9 @@ eski_adlar = ['age', 'calcium', 'phosphor','alkaline-phosphatase','vitamin-d','p
 # Yeni sütun adları
 yeni_adlar = ['Age', 'Calcium', 'Phospor','Alkaline Phospatase','Vitamin D','Parathormon','TSH','Estrogen','Testosterone','Osteoporosis Risk %','Gender','Menopause','Osteoporosis In the Family','Hip Fracture In The Family','Fracture History','Supplement']
 
-# Sütun adlarını geçici olarak değiştirme
-
 # Tüm satırları görüntülemek için max_rows seçeneğini None olarak ayarla
-
 df_gecici = df.rename(columns=dict(zip(eski_adlar, yeni_adlar)))
-# DataFrame'i transpoze edildikten sonra tüm satırları görüntülemek için max_rows seçeneğini None olarak ayarla
-pd.set_option('display.max_rows', None)
+
 # Değiştirilmiş DataFrame'i görüntüleme
 st.write(df_gecici.head(3).transpose())
 
