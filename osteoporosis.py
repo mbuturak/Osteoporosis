@@ -46,6 +46,7 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,train_size=0.70,random_state=
 lm=LinearRegression()
 model = lm.fit(x_train,y_train)
 
+
 # Veri kümesinin boyutlarını göster
 total_records = len(df)
 st.write(f'Total Record : {total_records}')
@@ -73,31 +74,9 @@ if st.sidebar.button('Send'):
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded]])
         #st.write(user_input)
         prediction = model.predict(user_input)
+        results = pd.DataFrame({'Actual': y_test, 'Predicted': prediction})
         #st.write(model.predict([[57,9.2,3.3,85,52,25,1.2,20,50,1,0,0,1,1,1]]))
         st.write(f'Prediction Result: <span style="font-size:20px">{prediction[0]:.2f} % You are potentially at risk</span>', unsafe_allow_html=True)
-
-        # X ve Y değerlerini hazırlayın
-        x_axis = df["age"]  # X ekseni için yaş sütununu kullanın
-        y_axis = prediction  # Y ekseni için tahminleri kullanın
-
-        # Eğriyi çizin
-        plt.plot(x_axis, y_axis, color='red', label='Regression Line')
-
-        # Noktaları ekleyin
-        plt.scatter(x_axis, df["osteoporosis-risk"], color='blue', label='Actual Values')
-
-        # Eksenleri etiketleyin
-        plt.xlabel('Age')
-        plt.ylabel('Osteoporosis Risk')
-
-        # Başlık ekleyin
-        plt.title('Osteoporosis Risk Prediction')
-
-        # Efsaneyi ekleyin
-        plt.legend()
-
-        # Grafiği gösterin
-        plt.show() 
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
@@ -105,6 +84,7 @@ cv_scores = cross_val_score(model, x, y, cv=2)  # 2 katlı çapraz doğrulama
 
 # Düğmelere tıklanınca çapraz doğrulama skorlarını, kullanılan kayıt sayılarını ve model doğruluk oranını göster/gizle
 show_scores = st.checkbox('Show/Hide Scores')
+show_graph = st.checkbox('Show/Hide Graph')
 
 # Çapraz doğrulama skorlarını göster
 if show_scores:
@@ -116,18 +96,11 @@ if show_scores:
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
     st.write(f'Average Accuracy Rate: **{np.mean(cv_scores):.2f}**')
 
-show_graph = st.checkbox('Show/Hide Graph')
-
-
-# Grafiği oluşturun
-if show_scores:
-  plt.figure(figsize=(10, 6))  # Grafiğin boyutunu ayarlayın
-  plt.plot(x_axis, y_axis, color='red', label='Regression Line')
-  plt.scatter(x_axis, df["osteoporosis-risk"], color='blue', label='Actual Values')
-  plt.xlabel('Age')
-  plt.ylabel('Osteoporosis Risk')
-  plt.title('Osteoporosis Risk Prediction')
-  plt.legend()
-
-  # Grafiği Streamlit'te gösterin
-  st.pyplot(plt.gcf())  # 'gcf' fonksiyonu mevcut grafiği döndürür
+if show_graph:
+    fig, ax = plt.subplots()
+    ax.scatter(results['Actual'], results['Predicted'])
+    ax.plot([results['Actual'].min(), results['Actual'].max()], [results['Actual'].min(), results['Actual'].max()], 'k--', lw=4)
+    ax.set_xlabel('Actual')
+    ax.set_ylabel('Predicted')
+    ax.set_title('Actual vs. Predicted')
+    st.pyplot(fig)
