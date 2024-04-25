@@ -111,11 +111,13 @@ if show_graph:
         ax.set_title('Actual vs. Predicted')
         plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
         st.pyplot(fig)  # st.pyplot(fig) yerine st.pyplot() kullanın
+
+        st.write("Success percentages of the data used for training;", results)
     else:
         st.warning("The prediction has not yet been realized")
 
 if show_result_rates:
-    st.write("Success percentages of the data used for training;", results)
+    
     
     #Hata Yakalama
     df_hata = pd.DataFrame()
