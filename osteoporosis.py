@@ -105,4 +105,5 @@ if show_graph and results is not None:
     ax.set_xlabel('Actual')
     ax.set_ylabel('Predicted')
     ax.set_title('Actual vs. Predicted')
+    plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
     st.pyplot()  # st.pyplot(fig) yerine st.pyplot() kullanın
