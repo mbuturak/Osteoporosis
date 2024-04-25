@@ -87,6 +87,7 @@ cv_scores = cross_val_score(model, x, y, cv=2)  # 2 katlı çapraz doğrulama
 # Düğmelere tıklanınca çapraz doğrulama skorlarını, kullanılan kayıt sayılarını ve model doğruluk oranını göster/gizle
 show_scores = st.checkbox('Show/Hide Scores')
 show_graph = st.checkbox('Show/Hide Graph')
+show_result_rates = st.checkbox('Show/Hide Result Rates')
 
 # Çapraz doğrulama skorlarını göster
 if show_scores:
@@ -109,7 +110,21 @@ if show_graph:
         ax.set_title('Actual vs. Predicted')
         plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
         st.pyplot(fig)  # st.pyplot(fig) yerine st.pyplot() kullanın
-
-        st.write("Success percentages of the data used for training;", results)
     else:
         st.warning("The prediction has not yet been realized")
+
+if show_result_rates:
+    st.write("Success percentages of the data used for training;", results)
+    
+    #Hata Yakalama
+    df_hata = pd.DataFrame()
+    df_hata['Actual'] = y
+    y_tahmin = model.predict(x)
+    df_hata['Predicted'] = y_tahmin
+    df_hata['Difference']=y-y_tahmin
+
+    df_hata['Mean Squared Error']= mean_squared_error(y,y_tahmin)
+    df_hata['Mean Absoulte Error']=mean_absolute_error(y,y_tahmin)
+    df_hata['Mean Percetage Error']=mean_absolute_percentage_error(y,y_tahmin)
+
+    df_hata.mean()
