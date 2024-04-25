@@ -97,7 +97,7 @@ if st.sidebar.button('Send'):
         plt.legend()
 
         # Grafiği gösterin
-        plt.show()  # Streamlit'te göstermek için bu satırı yorum satırı haline getirin
+        plt.show() 
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
