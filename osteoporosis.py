@@ -52,6 +52,8 @@ model = lm.fit(x_train,y_train)
 total_records = len(df)
 st.write(f'Total Record : {total_records}')
 
+# Tüm satırları görüntülemek için max_rows seçeneğini None olarak ayarla
+pd.set_option('display.max_rows', None)
 # Önceki sütun adları
 eski_adlar = ['age', 'calcium', 'phosphor','alkaline-phosphatase','vitamin-d','parathormon','tsh','estrogen','testosterone','osteoporosis-risk','gender_Kadın','menopause_Hayır','osteoporosis-in-the-family_Hayır','hip-fracture-in-the-family_Hayır','fracture-history_Hayır','supplement_Hayır']
 
