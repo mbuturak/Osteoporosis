@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
+import matplotlib.pyplot as plt
 
 # Verileri yükle (kök dizininden)
 # y = mx + b
@@ -91,3 +92,41 @@ if show_scores:
     st.write(f'Number of Training Records Used: {train_records}/{total_records}')
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
     st.write(f'Average Accuracy Rate: **{np.mean(cv_scores):.2f}**')
+
+show_graph = st.checkbox('Show/Hide Graph')
+
+# X ve Y değerlerini hazırlayın
+x_axis = df["age"]  # X ekseni için yaş sütununu kullanın
+y_axis = prediction  # Y ekseni için tahminleri kullanın
+
+# Eğriyi çizin
+plt.plot(x_axis, y_axis, color='red', label='Regression Line')
+
+# Noktaları ekleyin
+plt.scatter(x_axis, df["osteoporosis-risk"], color='blue', label='Actual Values')
+
+# Eksenleri etiketleyin
+plt.xlabel('Age')
+plt.ylabel('Osteoporosis Risk')
+
+# Başlık ekleyin
+plt.title('Osteoporosis Risk Prediction')
+
+# Efsaneyi ekleyin
+plt.legend()
+
+# Grafiği gösterin
+plt.show()  # Streamlit'te göstermek için bu satırı yorum satırı haline getirin
+
+# Grafiği oluşturun
+if show_scores:
+  plt.figure(figsize=(10, 6))  # Grafiğin boyutunu ayarlayın
+  plt.plot(x_axis, y_axis, color='red', label='Regression Line')
+  plt.scatter(x_axis, df["osteoporosis-risk"], color='blue', label='Actual Values')
+  plt.xlabel('Age')
+  plt.ylabel('Osteoporosis Risk')
+  plt.title('Osteoporosis Risk Prediction')
+  plt.legend()
+
+  # Grafiği Streamlit'te gösterin
+  st.pyplot(plt.gcf())  # 'gcf' fonksiyonu mevcut grafiği döndürür
