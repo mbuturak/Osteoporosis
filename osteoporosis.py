@@ -63,7 +63,8 @@ yeni_adlar = ['Age', 'Calcium', 'Phospor','Alkaline Phospatase','Vitamin D','Par
 # Tüm satırları görüntülemek için max_rows seçeneğini None olarak ayarla
 
 df_gecici = df.rename(columns=dict(zip(eski_adlar, yeni_adlar)))
-df_gecici = pd.set_option('display.max_rows', None)
+# DataFrame'i transpoze edildikten sonra tüm satırları görüntülemek için max_rows seçeneğini None olarak ayarla
+pd.set_option('display.max_rows', None)
 # Değiştirilmiş DataFrame'i görüntüleme
 st.write(df_gecici.head(3).transpose())
 
