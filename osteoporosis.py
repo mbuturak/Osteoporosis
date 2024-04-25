@@ -92,17 +92,3 @@ if show_scores:
     st.write(f'Number of Training Records Used: {train_records}/{total_records}')
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
     st.write(f'Average Accuracy Rate: {np.mean(cv_scores):.2f}')
-
-# Düğmeye tıklanınca ağacın görselleştirmesini göster/gizle
-show_tree_plot = st.checkbox('Show/Hide Two-Dimensional Chart')
-
-# Karar ağacı görselleştirmesini göster
-if show_tree_plot:
-    st.set_option('deprecation.showPyplotGlobalUse', False)
-
-    # Görselin boyutunu ve çözünürlüğünü ayarla
-    plt.figure(figsize=(65, 35), dpi=300)
-    plot_tree(model, filled=True, feature_names=x_train.columns.tolist(), max_depth=3)
-
-    # Görselin çıktısını ayarla
-    st.pyplot(bbox_inches='tight')
