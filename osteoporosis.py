@@ -5,6 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_squared_error,mean_absolute_error,mean_absolute_percentage_error
 
 # Verileri yükle (kök dizininden)
 # y = mx + b
