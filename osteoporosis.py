@@ -51,7 +51,7 @@ model = lm.fit(x_train,y_train)
 # Veri kümesinin boyutlarını göster
 total_records = len(df)
 st.write(f'Total Record : {total_records}')
-st.write(df.head(3))
+st.write(df.head(3).transpose())
 
 # Eğitim ve test kümesi boyutlarını göster
 train_records = len(x_train)
