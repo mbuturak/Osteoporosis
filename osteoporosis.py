@@ -67,9 +67,8 @@ if st.sidebar.button('Send'):
         fracture_history_encoded = 1 if fracture_history == "True" else 0
         supplement_encoded = 1 if supplement == "True" else 0
 
-        user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
-                                hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
-                                calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone]])
+        user_input = np.array([[age,calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone,gender_encoded, menopause_encoded, osteoporosis_family_encoded,
+                                hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded]])
         st.write(user_input)
         prediction = model.predict(user_input)
         st.write(model.predict([[57,9.2,3.3,85,52,25,1.2,20,50,1,0,0,1,1,1]]))
