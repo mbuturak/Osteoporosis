@@ -68,7 +68,7 @@ if st.sidebar.button('Send'):
 
         user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
-                                calcium, phosphor, vitamin_d, tsh, estrogen, testosterone]])
+                                calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone]])
         st.write(user_input)
         #prediction = model.predict(user_input)
 
