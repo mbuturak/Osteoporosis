@@ -116,18 +116,26 @@ if show_graph:
     else:
         st.warning("The prediction has not yet been realized")
 
-if show_result_rates:
-    
-    
-    #Hata Yakalama
+if show_result_rates:    
+    # Hata Yakalama
     df_hata = pd.DataFrame()
     df_hata['Actual'] = y
     y_tahmin = model.predict(x)
     df_hata['Predicted'] = y_tahmin
-    df_hata['Difference']=y-y_tahmin
+    df_hata['Difference'] = y - y_tahmin
 
-    df_hata['Mean Squared Error']= mean_squared_error(y,y_tahmin)
-    df_hata['Mean Absoulte Error']=mean_absolute_error(y,y_tahmin)
-    df_hata['Mean Percetage Error']=mean_absolute_percentage_error(y,y_tahmin)
+    df_hata['Mean Squared Error'] = mean_squared_error(y, y_tahmin)
+    df_hata['Mean Absolute Error'] = mean_absolute_error(y, y_tahmin)
+    df_hata['Mean Percentage Error'] = mean_absolute_percentage_error(y, y_tahmin)
+    
+    # Ortalamaları hesapla
+    means = df_hata.mean()
 
-    df_hata.mean()
+    # Sonuçları göster
+    st.write("Mean Squared Error:", means['Mean Squared Error'])
+    st.write("Mean Absolute Error:", means['Mean Absolute Error'])
+    st.write("Mean Percentage Error:", means['Mean Percentage Error'])
+
+    # Hatanın dağılımını göster
+    st.write("Error Distribution:", df_hata)
+
