@@ -4,8 +4,6 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sklearn.tree import plot_tree
-import matplotlib.pyplot as plt
 
 # Verileri yükle (kök dizininden)
 # y = mx + b
