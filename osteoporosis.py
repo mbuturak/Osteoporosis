@@ -57,6 +57,7 @@ train_records = len(x_train)
 test_records = len(x_test)
 
 # Tahmin işlemi ve yeni kayıtları eklemek
+results = None
 if st.sidebar.button('Send'):
     
     if all([age == 0,alkaline==0,vitamin_d==0,parathormon==0,estrogen==0,testosterone==0]):
