@@ -98,12 +98,17 @@ if show_scores:
     st.write(f'Model Accuracy Rate: **{score:.2f}**')
     st.write(f'Average Accuracy Rate: **{np.mean(cv_scores):.2f}**')
 
-if show_graph and results is not None:
-    fig, ax = plt.subplots()
-    ax.scatter(results['Actual'], results['Predicted'])
-    ax.plot([results['Actual'].min(), results['Actual'].max()], [results['Actual'].min(), results['Actual'].max()], 'k--', lw=4)
-    ax.set_xlabel('Actual')
-    ax.set_ylabel('Predicted')
-    ax.set_title('Actual vs. Predicted')
-    plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
-    st.pyplot()  # st.pyplot(fig) yerine st.pyplot() kullanın
+if show_graph:
+    if results is not None:
+        st.write("Results DataFrame:", results)
+        
+        fig, ax = plt.subplots()
+        ax.scatter(results['Actual'], results['Predicted'])
+        ax.plot([results['Actual'].min(), results['Actual'].max()], [results['Actual'].min(), results['Actual'].max()], 'k--', lw=4)
+        ax.set_xlabel('Actual')
+        ax.set_ylabel('Predicted')
+        ax.set_title('Actual vs. Predicted')
+        plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
+        st.pyplot()  # st.pyplot(fig) yerine st.pyplot() kullanın
+    else:
+        st.warning("Results DataFrame is empty. Prediction might not have been performed yet or an error occurred.")
