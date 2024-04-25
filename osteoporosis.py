@@ -111,4 +111,4 @@ if show_graph:
         plt.show()  # Grafikleri kontrol etmek için plt.show() ekleyin
         st.pyplot()  # st.pyplot(fig) yerine st.pyplot() kullanın
     else:
-        st.warning("Results DataFrame is empty. Prediction might not have been performed yet or an error occurred.")
+        st.warning("The prediction has not yet been realized")
