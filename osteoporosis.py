@@ -73,7 +73,7 @@ if st.sidebar.button('Send'):
         #st.write(user_input)
         prediction = model.predict(user_input)
         #st.write(model.predict([[57,9.2,3.3,85,52,25,1.2,20,50,1,0,0,1,1,1]]))
-        st.write(f'Prediction Result: <span style="font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
+        st.write(f'Prediction Result: <span style="font-size:20px">{prediction[0]:.2f} %</span>', unsafe_allow_html=True)
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
