@@ -61,11 +61,11 @@ if st.sidebar.button('Send'):
     else:
 
         gender_encoded = 1 if gender == "Female" else 0
-        menopause_encoded = 1 if menopause == "False" else 0
-        osteoporosis_family_encoded = 1 if osteoporosis_family == "False" else 0
-        hip_fracture_family_encoded = 1 if hip_fracture_family == "False" else 0
-        fracture_history_encoded = 1 if fracture_history == "False" else 0
-        supplement_encoded = 1 if supplement == "False" else 0
+        menopause_encoded = 1 if menopause == "True" else 0
+        osteoporosis_family_encoded = 1 if osteoporosis_family == "True" else 0
+        hip_fracture_family_encoded = 1 if hip_fracture_family == "True" else 0
+        fracture_history_encoded = 1 if fracture_history == "True" else 0
+        supplement_encoded = 1 if supplement == "True" else 0
 
         user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
