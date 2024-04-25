@@ -71,8 +71,8 @@ if st.sidebar.button('Send'):
                                 calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone]])
         st.write(user_input)
         prediction = model.predict(user_input)
-
-        st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
+        st.write(prediction)
+        #st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
