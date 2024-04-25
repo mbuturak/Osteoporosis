@@ -69,14 +69,14 @@ if st.sidebar.button('Send'):
         user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
                                 calcium, phosphor, alkaline,vitamin_d,parathormon, tsh, estrogen, testosterone]])
-        st.write(user_input)
-        prediction = model.predict(user_input)
-        st.write(prediction)
+        #st.write(user_input)
+        #prediction = model.predict(user_input)
+        st.write(model.predict([[57,9.2,3.3,85,52,25,1.2,20,50,True,False,False,True,True,True]]))
         #st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
-cv_scores = cross_val_score(model, x, y, cv=2)  # 5 katlı çapraz doğrulama
+cv_scores = cross_val_score(model, x, y, cv=2)  # 2 katlı çapraz doğrulama
 
 # Düğmelere tıklanınca çapraz doğrulama skorlarını, kullanılan kayıt sayılarını ve model doğruluk oranını göster/gizle
 show_scores = st.checkbox('Show/Hide Scores')
