@@ -69,10 +69,10 @@ if st.sidebar.button('Send'):
         user_input = np.array([[age, gender_encoded, menopause_encoded, osteoporosis_family_encoded,
                                 hip_fracture_family_encoded, fracture_history_encoded, supplement_encoded,
                                 calcium, phosphor, vitamin_d, tsh, estrogen, testosterone]])
+        print(user_input)
+        #prediction = model.predict(user_input)
 
-        prediction = model.predict(user_input)
-
-        st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
+        #st.write(f'Prediction Result: <span style="color:red;font-size:20px">{prediction[0]}</span>', unsafe_allow_html=True)
 
 # Model skorunu hesapla
 score = model.score(x_test, y_test)
